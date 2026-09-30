@@ -1,0 +1,1182 @@
+:<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>UNLIMITED MODS</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f5f5f7;
+    color:#222;
+}
+
+header{
+    height:72px;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 14px;
+    box-shadow:0 2px 10px #ddd;
+    position:sticky;
+    top:0;
+    z-index:50;
+}
+
+.logo{
+    font-size:21px;
+    font-weight:900;
+    color:#ef3150;
+}
+
+.right{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.language{
+    border:1px solid #ddd;
+    border-radius:9px;
+    padding:9px 5px;
+    background:white;
+}
+
+.adminBtn{
+    border:0;
+    background:#5143e5;
+    color:white;
+    padding:10px 12px;
+    border-radius:9px;
+    font-weight:bold;
+}
+
+.homeTitle{
+    padding:20px 15px 8px;
+    font-size:30px;
+    font-weight:bold;
+}
+
+#home{
+    padding:10px 14px 30px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 3px 13px #ddd;
+}
+
+.dpArea{
+    padding:12px 12px 5px;
+}
+
+.dp{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:13px;
+    display:block;
+}
+
+.noDp{
+    width:100%;
+    height:180px;
+    border-radius:13px;
+    background:linear-gradient(135deg,#17172b,#5143e5);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:50px;
+}
+
+.info{
+    padding:10px 13px 14px;
+}
+
+.productName{
+    font-size:17px;
+    font-weight:bold;
+    line-height:1.3;
+    word-break:break-word;
+}
+
+.version{
+    display:inline-block;
+    margin-top:9px;
+    padding:7px 10px;
+    border-radius:8px;
+    background:#eee;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.download{
+    width:100%;
+    margin-top:12px;
+    padding:13px;
+    border:0;
+    border-radius:10px;
+    background:#16a34a;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.empty{
+    grid-column:1/-1;
+    text-align:center;
+    padding:70px 20px;
+    color:#888;
+}
+
+/* ADMIN */
+.overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:#0009;
+    z-index:200;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+}
+
+.panel{
+    width:100%;
+    max-width:430px;
+    max-height:92vh;
+    overflow:auto;
+    background:white;
+    border-radius:20px;
+    padding:20px;
+}
+
+.close{
+    float:right;
+    width:36px;
+    height:36px;
+    border:0;
+    border-radius:50%;
+    background:#eee;
+    font-size:21px;
+}
+
+label{
+    display:block;
+    margin-top:15px;
+    font-weight:bold;
+}
+
+input,select{
+    width:100%;
+    padding:13px;
+    margin-top:7px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:15px;
+}
+
+.mainBtn{
+    width:100%;
+    padding:14px;
+    margin-top:17px;
+    border:0;
+    border-radius:10px;
+    background:#5143e5;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.manageItem{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:8px;
+    padding:10px;
+    margin-top:9px;
+    background:#f2f2f4;
+    border-radius:10px;
+}
+
+.manageName{
+    font-size:13px;
+    font-weight:bold;
+    word-break:break-word;
+}
+
+.deleteBtn{
+    flex-shrink:0;
+    border:0;
+    background:#dc2626;
+    color:white;
+    padding:8px 10px;
+    border-radius:7px;
+}
+
+@media(max-width:600px){
+
+    .logo{
+        font-size:17px;
+    }
+
+    .language{
+        max-width:85px;
+        font-size:12px;
+    }
+
+    .adminBtn{
+        font-size:11px;
+        padding:9px;
+    }
+
+    #home{
+        grid-template-columns:repeat(2,1fr);
+        padding:10px;
+        gap:12px;
+    }
+
+    .dp,
+    .noDp{
+        height:140px;
+    }
+
+    .productName{
+        font-size:14px;
+    }
+
+    .download{
+        font-size:14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        UNLIMITED MODS
+    </div>
+
+    <div class="right">
+
+        <select
+            class="language"
+            onchange="changeLanguage(this.value)">
+
+            <option value="en">English</option>
+            <option value="ur">اردو</option>
+            <option value="hi">हिन्दी</option>
+            <option value="ar">العربية</option>
+            <option value="id">Indonesia</option>
+
+        </select>
+
+        <button
+            class="adminBtn"
+            onclick="openAdmin()">
+
+            🔐 Admin
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<div
+    class="homeTitle"
+    id="homeTitle">
+
+    🏠 Home
+
+</div>
+
+
+<div id="home"></div>
+
+
+<!-- ADMIN -->
+
+<div
+    class="overlay"
+    id="adminOverlay">
+
+    <div class="panel">
+
+        <button
+            class="close"
+            onclick="closeAdmin()">
+
+            ×
+
+        </button>
+
+        <h2>🔐 Admin Panel</h2>
+
+
+        <!-- LOGIN -->
+
+        <div id="loginArea">
+
+            <label>Admin Password</label>
+
+            <input
+                type="password"
+                id="adminPassword"
+                placeholder="Password">
+
+            <button
+                class="mainBtn"
+                onclick="loginAdmin()">
+
+                🔐 LOGIN
+
+            </button>
+
+        </div>
+
+
+        <!-- ADMIN AREA -->
+
+        <div
+            id="adminArea"
+            style="display:none">
+
+            <h3>📤 Upload New File</h3>
+
+
+            <!-- IMPORTANT NAME -->
+
+            <label>Product Name</label>
+
+            <input
+                type="text"
+                id="productName"
+                placeholder="مثلاً FF SENSEI GENERATOR">
+
+
+            <!-- REAL FILE -->
+
+            <label>File</label>
+
+            <input
+                type="file"
+                id="fileInput">
+
+
+            <!-- DP -->
+
+            <label>DP / Logo</label>
+
+            <input
+                type="file"
+                id="dpInput"
+                accept="image/*">
+
+
+            <!-- ROOT -->
+
+            <label>Root / Non-Root</label>
+
+            <select id="rootType">
+
+                <option value="Root">
+                    🌳 Root
+                </option>
+
+                <option value="Non-Root">
+                    📱 Non-Root
+                </option>
+
+                <option value="Root + Non-Root">
+                    🔄 Root + Non-Root
+                </option>
+
+            </select>
+
+
+            <button
+                class="mainBtn"
+                onclick="uploadFile()">
+
+                ⬆️ UPLOAD FILE
+
+            </button>
+
+
+            <hr style="margin:25px 0">
+
+
+            <h3>📂 Manage Files</h3>
+
+            <div id="manageFiles"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =================================================
+   SETTINGS
+================================================= */
+
+const ADMIN_PASSWORD = "1234";
+
+let products = [];
+
+let currentLanguage = "en";
+
+
+/* =================================================
+   LANGUAGES
+================================================= */
+
+const T = {
+
+    en:{
+        home:"🏠 Home",
+        download:"📥 DOWNLOAD",
+        empty:"No files uploaded yet.",
+        root:"Root",
+        nonroot:"Non-Root",
+        both:"Root + Non-Root"
+    },
+
+    ur:{
+        home:"🏠 ہوم",
+        download:"📥 ڈاؤن لوڈ",
+        empty:"ابھی کوئی فائل اپلوڈ نہیں ہوئی۔",
+        root:"روٹ",
+        nonroot:"نان روٹ",
+        both:"روٹ + نان روٹ"
+    },
+
+    hi:{
+        home:"🏠 होम",
+        download:"📥 डाउनलोड",
+        empty:"अभी कोई फाइल अपलोड नहीं हुई।",
+        root:"रूट",
+        nonroot:"नॉन-रूट",
+        both:"रूट + नॉन-रूट"
+    },
+
+    ar:{
+        home:"🏠 الرئيسية",
+        download:"📥 تحميل",
+        empty:"لم يتم رفع أي ملف بعد.",
+        root:"روت",
+        nonroot:"بدون روت",
+        both:"روت + بدون روت"
+    },
+
+    id:{
+        home:"🏠 Beranda",
+        download:"📥 UNDUH",
+        empty:"Belum ada file yang diunggah.",
+        root:"Root",
+        nonroot:"Non-Root",
+        both:"Root + Non-Root"
+    }
+
+};
+
+
+/* =================================================
+   INDEXED DB
+================================================= */
+
+let db;
+
+
+/* Open Database */
+
+const request =
+    indexedDB.open(
+        "UnlimitedModsDB",
+        1
+    );
+
+
+request.onupgradeneeded =
+function(event){
+
+    db = event.target.result;
+
+
+    if(!db.objectStoreNames.contains("products")){
+
+        db.createObjectStore(
+            "products",
+            {
+                keyPath:"id"
+            }
+        );
+
+    }
+
+};
+
+
+request.onsuccess =
+function(event){
+
+    db = event.target.result;
+
+    loadProducts();
+
+};
+
+
+request.onerror =
+function(){
+
+    alert(
+        "Database open نہیں ہو سکا۔"
+    );
+
+};
+
+
+/* =================================================
+   LOAD PRODUCTS
+================================================= */
+
+function loadProducts(){
+
+    const transaction =
+        db.transaction(
+            "products",
+            "readonly"
+        );
+
+
+    const store =
+        transaction.objectStore(
+            "products"
+        );
+
+
+    const request =
+        store.getAll();
+
+
+    request.onsuccess =
+    function(){
+
+        products =
+            request.result || [];
+
+
+        products.sort(
+            (a,b)=>b.id-a.id
+        );
+
+
+        showHome();
+
+    };
+
+}
+
+
+/* =================================================
+   LANGUAGE
+================================================= */
+
+function changeLanguage(language){
+
+    currentLanguage = language;
+
+    document.getElementById(
+        "homeTitle"
+    ).innerText =
+        T[language].home;
+
+    showHome();
+
+}
+
+
+/* =================================================
+   ADMIN
+================================================= */
+
+function openAdmin(){
+
+    document.getElementById(
+        "adminOverlay"
+    ).style.display="flex";
+
+}
+
+
+function closeAdmin(){
+
+    document.getElementById(
+        "adminOverlay"
+    ).style.display="none";
+
+}
+
+
+/* =================================================
+   LOGIN
+================================================= */
+
+function loginAdmin(){
+
+    const password =
+        document.getElementById(
+            "adminPassword"
+        ).value;
+
+
+    if(password === ADMIN_PASSWORD){
+
+        document.getElementById(
+            "loginArea"
+        ).style.display="none";
+
+
+        document.getElementById(
+            "adminArea"
+        ).style.display="block";
+
+
+        showManageFiles();
+
+    }else{
+
+        alert(
+            "Wrong Admin Password!"
+        );
+
+    }
+
+}
+
+
+/* =================================================
+   UPLOAD FILE
+================================================= */
+
+function uploadFile(){
+
+    const productName =
+        document.getElementById(
+            "productName"
+        ).value.trim();
+
+
+    const file =
+        document.getElementById(
+            "fileInput"
+        ).files[0];
+
+
+    const dp =
+        document.getElementById(
+            "dpInput"
+        ).files[0];
+
+
+    const type =
+        document.getElementById(
+            "rootType"
+        ).value;
+
+
+    if(!productName){
+
+        alert(
+            "Product Name لکھیں!"
+        );
+
+        return;
+
+    }
+
+
+    if(!file){
+
+        alert(
+            "File منتخب کریں!"
+        );
+
+        return;
+
+    }
+
+
+    /*
+       اصل File object محفوظ ہوگا۔
+       اسے Base64/localStorage میں تبدیل نہیں کیا جائے گا۔
+    */
+
+    const product = {
+
+        id:Date.now(),
+
+        name:productName,
+
+        file:file,
+
+        fileName:file.name,
+
+        fileType:file.type,
+
+        dp:dp || null,
+
+        type:type
+
+    };
+
+
+    const transaction =
+        db.transaction(
+            "products",
+            "readwrite"
+        );
+
+
+    const store =
+        transaction.objectStore(
+            "products"
+        );
+
+
+    store.put(product);
+
+
+    transaction.oncomplete =
+    function(){
+
+        document.getElementById(
+            "productName"
+        ).value="";
+
+
+        document.getElementById(
+            "fileInput"
+        ).value="";
+
+
+        document.getElementById(
+            "dpInput"
+        ).value="";
+
+
+        products.unshift(product);
+
+
+        showHome();
+
+        showManageFiles();
+
+
+        alert(
+            "File successfully uploaded!"
+        );
+
+    };
+
+
+    transaction.onerror =
+    function(){
+
+        alert(
+            "File save نہیں ہوئی۔ دوبارہ کوشش کریں۔"
+        );
+
+    };
+
+}
+
+
+/* =================================================
+   HOME
+================================================= */
+
+function showHome(){
+
+    const home =
+        document.getElementById(
+            "home"
+        );
+
+
+    home.innerHTML="";
+
+
+    if(products.length===0){
+
+        home.innerHTML=`
+
+            <div class="empty">
+
+                ${T[currentLanguage].empty}
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    products.forEach(
+        function(item){
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className="card";
+
+
+            const dpHTML =
+                item.dp
+
+                ?
+
+                `<img
+                    class="dp"
+                    src="${URL.createObjectURL(item.dp)}"
+                    alt="DP">`
+
+                :
+
+                `<div class="noDp">
+                    📦
+                 </div>`;
+
+
+            card.innerHTML=`
+
+                <div class="dpArea">
+
+                    ${dpHTML}
+
+                </div>
+
+
+                <div class="info">
+
+                    <!--
+                      صرف Admin کا لکھا ہوا Name
+                      یہاں دکھے گا
+                    -->
+
+                    <div class="productName">
+
+                        ${escapeHTML(
+                            item.name
+                        )}
+
+                    </div>
+
+
+                    <div class="version">
+
+                        ${versionText(
+                            item.type
+                        )}
+
+                    </div>
+
+
+                    <button
+                        class="download">
+
+                        ${T[
+                            currentLanguage
+                        ].download}
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            const button =
+                card.querySelector(
+                    ".download"
+                );
+
+
+            button.onclick =
+                function(){
+
+                    downloadFile(item);
+
+                };
+
+
+            home.appendChild(card);
+
+        }
+    );
+
+}
+
+
+/* =================================================
+   VERSION TEXT
+================================================= */
+
+function versionText(type){
+
+    if(type==="Root"){
+
+        return T[
+            currentLanguage
+        ].root;
+
+    }
+
+
+    if(type==="Non-Root"){
+
+        return T[
+            currentLanguage
+        ].nonroot;
+
+    }
+
+
+    return T[
+        currentLanguage
+    ].both;
+
+}
+
+
+/* =================================================
+   DOWNLOAD
+================================================= */
+
+function downloadFile(item){
+
+    /*
+       اصل File object واپس استعمال ہوگا۔
+       اس سے APK/ZIP/etc کا original extension
+       خراب نہیں ہوگا۔
+    */
+
+    const url =
+        URL.createObjectURL(
+            item.file
+        );
+
+
+    const a =
+        document.createElement("a");
+
+
+    a.href=url;
+
+
+    /*
+       اصل uploaded file کا نام
+       download میں استعمال ہوگا۔
+    */
+
+    a.download =
+        item.fileName ||
+        "download";
+
+
+    document.body.appendChild(a);
+
+
+    a.click();
+
+
+    a.remove();
+
+
+    setTimeout(
+        function(){
+
+            URL.revokeObjectURL(url);
+
+        },
+        2000
+    );
+
+}
+
+
+/* =================================================
+   ADMIN FILE LIST
+================================================= */
+
+function showManageFiles(){
+
+    const box =
+        document.getElementById(
+            "manageFiles"
+        );
+
+
+    box.innerHTML="";
+
+
+    if(products.length===0){
+
+        box.innerHTML=
+            "<p>No files.</p>";
+
+        return;
+
+    }
+
+
+    products.forEach(
+        function(item){
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+
+            row.className="manageItem";
+
+
+            row.innerHTML=`
+
+                <span class="manageName">
+
+                    ${escapeHTML(
+                        item.name
+                    )}
+
+                </span>
+
+
+                <button
+                    class="deleteBtn">
+
+                    🗑️ Delete
+
+                </button>
+
+            `;
+
+
+            row.querySelector(
+                ".deleteBtn"
+            ).onclick =
+            function(){
+
+                deleteFile(item.id);
+
+            };
+
+
+            box.appendChild(row);
+
+        }
+    );
+
+}
+
+
+/* =================================================
+   DELETE
+================================================= */
+
+function deleteFile(id){
+
+    if(
+        !confirm(
+            "کیا یہ فائل Delete کرنی ہے؟"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    const transaction =
+        db.transaction(
+            "products",
+            "readwrite"
+        );
+
+
+    const store =
+        transaction.objectStore(
+            "products"
+        );
+
+
+    store.delete(id);
+
+
+    transaction.oncomplete =
+    function(){
+
+        products =
+            products.filter(
+                function(item){
+
+                    return item.id !== id;
+
+                }
+            );
+
+
+        showHome();
+
+        showManageFiles();
+
+    };
+
+}
+
+
+/* =================================================
+   ESCAPE HTML
+================================================= */
+
+function escapeHTML(text){
+
+    return String(text)
+
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+</script>
+
+</body>
+</html>
